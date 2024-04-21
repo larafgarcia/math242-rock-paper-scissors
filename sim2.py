@@ -62,7 +62,7 @@ class CyclicStrategy:
 
 
 # Simulation function
-def simulate(strategy, num_rounds=100000000):
+def simulate(strategy, num_rounds=10000000000):
     wins = 0
     losses = 0
     ties = 0
