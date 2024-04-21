@@ -153,14 +153,33 @@ def win_stay_lose_change_strategy(round_num, player_moves, results):
     else:
         return "rock"
 
+# Majority strategy implementation
+# Might be interesting but maybe not realistic
+# Works well against our AI but wouldn't against a random bot
+def majority_strategy(round_num, player_moves, results):
+    if round_num == 0:
+        return random.choice(CHOICES)  # Random for the first round
+    else:
+        # Count occurrences of each move
+        move_count = Counter(player_moves)
+        # Select the move with the highest count
+        most_frequent = move_count.most_common(1)[0][0]
+        # Return the next move in a way that counters the AI
+        if most_frequent == "rock":
+            return "paper"  # Paper beats rock
+        elif most_frequent == "paper":
+            return "scissors"  # Scissors beat paper
+        else:
+            return "rock"  # Rock beats scissors
+
 # Test different strategies against the AI bot for 100 rounds each
 num_rounds = 1000
 random_win_rate, random_scores = test_strategy(random_strategy, num_rounds)
 loop_win_rate, loop_scores = test_strategy(loop_strategy, num_rounds)
-win_stay_lose_change_win_rate, win_stay_lose_change_scores = test_strategy(
-    win_stay_lose_change_strategy, num_rounds
-)
+win_stay_lose_change_win_rate, win_stay_lose_change_scores = test_strategy(win_stay_lose_change_strategy, num_rounds)
+majority_win_rate, majority_scores = test_strategy(majority_strategy, num_rounds)
 
 print("Random Strategy Win Rate:", random_win_rate, "%")
 print("Loop Strategy Win Rate:", loop_win_rate, "%")
 print("Win-Stay-Lose-Change Strategy Win Rate:", win_stay_lose_change_win_rate, "%")
+print("Majority Strategy Win Rate:", majority_win_rate, "%")
