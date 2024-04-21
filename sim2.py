@@ -62,7 +62,7 @@ class CyclicStrategy:
 
 
 # Simulation function
-def simulate(strategy, num_rounds=10000000000):
+def simulate(strategy, num_rounds=100000000000):
     wins = 0
     losses = 0
     ties = 0
@@ -113,4 +113,4 @@ for name, strategy in strategies.items():
 
 # Display the results
 for strategy, result in results.items():
-    print(f"{strategy}: {result['win_percentage']:.2f}% win, {result['tie_percentage']:.2f}% ties")
+    print(f"{strategy}: {result['win_percentage']:.2f}% win")

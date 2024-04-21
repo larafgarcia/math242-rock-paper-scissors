@@ -173,7 +173,7 @@ def majority_strategy(round_num, player_moves, results):
             return "rock"  # Rock beats scissors
 
 # Test different strategies against the AI bot for 100 rounds each
-num_rounds = 1000
+num_rounds = 10000
 random_win_rate, random_scores = test_strategy(random_strategy, num_rounds)
 loop_win_rate, loop_scores = test_strategy(loop_strategy, num_rounds)
 win_stay_lose_change_win_rate, win_stay_lose_change_scores = test_strategy(win_stay_lose_change_strategy, num_rounds)
