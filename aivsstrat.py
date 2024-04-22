@@ -172,14 +172,39 @@ def majority_strategy(round_num, player_moves, results):
         else:
             return "rock"  # Rock beats scissors
 
+# Copycat strategy implementation
+def copycat_strategy(round_num, player_moves, results):
+    if round_num == 0:
+        return random.choice(CHOICES)  # Random for the first round
+    else:
+        return player_moves[-1]  # Copy the opponent's last move
+
+#Beat-the-last strategy implementation
+def beat_the_last_strategy(round_num, player_moves, results):
+    if round_num == 0:
+        return random.choice(CHOICES)
+    else:
+        # Counter the opponent's last move
+        last_opponent_move = player_moves[-1]
+        if last_opponent_move == "rock":
+            return "paper"  # Paper beats rock
+        elif last_opponent_move == "paper":
+            return "scissors"  # Scissors beat paper
+        else:
+            return "rock"  # Rock beats scissors
+
 # Test different strategies against the AI bot for 100 rounds each
 num_rounds = 10000
 random_win_rate, random_scores = test_strategy(random_strategy, num_rounds)
 loop_win_rate, loop_scores = test_strategy(loop_strategy, num_rounds)
 win_stay_lose_change_win_rate, win_stay_lose_change_scores = test_strategy(win_stay_lose_change_strategy, num_rounds)
 majority_win_rate, majority_scores = test_strategy(majority_strategy, num_rounds)
+copycat_win_rate, copycat_scores = test_strategy(copycat_strategy, num_rounds)
+beat_the_last_win_rate, beat_the_last_scores = test_strategy(beat_the_last_strategy, num_rounds)
 
 print("Random Strategy Win Rate:", random_win_rate, "%")
 print("Loop Strategy Win Rate:", loop_win_rate, "%")
 print("Win-Stay-Lose-Change Strategy Win Rate:", win_stay_lose_change_win_rate, "%")
 print("Majority Strategy Win Rate:", majority_win_rate, "%")
+print("Copycat Strategy Win Rate:", copycat_win_rate, "%")
+print("Beat-The-Last Strategy Win Rate:", beat_the_last_win_rate, "%")
